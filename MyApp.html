@@ -1,0 +1,639 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Responsive App with CSS
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: #4338ca;
+      outline: none;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+      .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+      .header-inner {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .header-inner {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    nav {
+      display: none;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: #374151;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0;
+      display: inline-block;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: #4f46e5;
+      outline: none;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #374151;
+      cursor: pointer;
+    }
+    .menu-btn:focus {
+      outline: 2px solid #4f46e5;
+      outline-offset: 2px;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      background-color: #fff;
+      box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.1);
+      padding: 0.5rem 1rem;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 100%;
+      z-index: 9;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .mobile-menu ul li a {
+      color: #374151;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      display: block;
+    }
+    .mobile-menu ul li a:hover,
+    .mobile-menu ul li a:focus {
+      color: #4f46e5;
+      outline: none;
+    }
+
+    /* Show nav on desktop */
+    @media (min-width: 768px) {
+      nav {
+        display: block;
+      }
+      .menu-btn {
+        display: none;
+      }
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+
+    /* Main */
+    main {
+      margin-top: 2.5rem;
+      margin-bottom: 5rem;
+    }
+    .hero {
+      max-width: 48rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 640px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: #4b5563;
+      margin-bottom: 2rem;
+    }
+    .btn-primary {
+      background-color: #4f46e5;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 0.75rem 2rem;
+      border-radius: 0.375rem;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #4338ca;
+      outline: none;
+    }
+
+    /* Features grid */
+    .features {
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (min-width: 640px) {
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .feature-card {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      height: 100%;
+    }
+    .feature-card img {
+      border-radius: 0.375rem;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      height: 12rem;
+      width: 100%;
+    }
+    .feature-card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #111827;
+    }
+    .feature-card p {
+      color: #4b5563;
+      flex-grow: 1;
+    }
+
+    /* Latest news */
+    .news-section {
+      margin-top: 5rem;
+      padding: 0 1rem;
+      max-width: 1024px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .news-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .news-article {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .news-article img {
+      width: 100%;
+      height: 15.625rem; /* 250px */
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .news-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+    .news-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #111827;
+    }
+    .news-content p {
+      color: #4b5563;
+      margin-bottom: 1rem;
+    }
+    .news-content a {
+      font-weight: 600;
+      color: #4f46e5;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .news-content a:hover,
+    .news-content a:focus {
+      color: #4338ca;
+      outline: none;
+    }
+
+    /* News article layout for larger screens */
+    @media (min-width: 640px) {
+      .news-article {
+        flex-direction: row;
+        height: 15.625rem;
+      }
+      .news-article img {
+        width: 12.5rem; /* 200px */
+        height: 100%;
+      }
+      .news-content {
+        padding: 1.5rem 2rem;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #fff;
+      box-shadow: inset 0 1px 0 rgb(0 0 0 / 0.05);
+      padding: 2rem 1rem;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+      }
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .social-links a {
+      color: #6b7280;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover,
+    .social-links a:focus {
+      color: #4f46e5;
+      outline: none;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <div class="header-inner">
+    <a class="logo" href="#">
+     MyApp
+    </a>
+    <nav aria-label="Primary navigation">
+     <ul>
+      <li>
+       <a href="#">
+        Home
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Features
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Pricing
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        About
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <button aria-label="Toggle menu" class="menu-btn" id="menu-btn">
+     <i class="fas fa-bars">
+     </i>
+    </button>
+   </div>
+   <div aria-label="Mobile navigation" class="mobile-menu" id="mobile-menu">
+    <ul>
+     <li>
+      <a href="#">
+       Home
+      </a>
+     </li>
+     <li>
+      <a href="#">
+       Features
+      </a>
+     </li>
+     <li>
+      <a href="#">
+       Pricing
+      </a>
+     </li>
+     <li>
+      <a href="#">
+       About
+      </a>
+     </li>
+     <li>
+      <a href="#">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </div>
+  </header>
+  <main>
+   <section class="hero" role="banner">
+    <h1>
+     Welcome to MyApp
+    </h1>
+    <p>
+      This is a simple demo website which I Rs Rayhan chowdhury created.I used the tools Html CSS and light js.
+    </p>
+    <p> Thank You </p>
+    <a class="btn-primary" href="#">
+     Get Started
+    </a>
+   </section>
+   <section aria-label="Features" class="features">
+    <article class="feature-card">
+     <img alt="A modern laptop displaying a dashboard with graphs and charts on screen, representing feature 1" height="400" src="https://storage.googleapis.com/a1aa/image/19934ecf-3805-45fc-708e-e2f05c236a96.jpg" width="600"/>
+     <h2>
+      Feature One
+     </h2>
+     <p>
+      Experience lightning fast performance and seamless integration with
+          our first feature.
+     </p>
+    </article>
+    <article class="feature-card">
+     <img alt="A group of diverse people collaborating around a table with laptops and notes, representing teamwork and feature 2" height="400" src="https://storage.googleapis.com/a1aa/image/6fff5194-349a-47b7-8415-ec1da76634f8.jpg" width="600"/>
+     <h2>
+      Feature Two
+     </h2>
+     <p>
+      Collaborate effortlessly with real-time updates and shared
+          workspaces.
+     </p>
+    </article>
+    <article class="feature-card">
+     <img alt="A mobile phone showing a sleek app interface with notifications and messages, representing feature 3" height="400" src="https://storage.googleapis.com/a1aa/image/3b28ef48-a805-4ca4-bb07-92c3595c0432.jpg" width="600"/>
+     <h2>
+      Feature Three
+     </h2>
+     <p>
+      Stay connected on the go with our fully responsive mobile-friendly
+          design.
+     </p>
+    </article>
+   </section>
+   <section aria-label="Latest news" class="news-section">
+    <h2>
+     Latest News
+    </h2>
+    <div class="news-list">
+     <article class="news-article">
+      <img alt="A city skyline at sunset with news headline overlay, representing news article 1" height="250" src="https://storage.googleapis.com/a1aa/image/16d97f6d-6ccf-48b1-09c6-9b94683d921a.jpg" width="400"/>
+      <div class="news-content">
+       <h3>
+        News Headline One
+       </h3>
+       <p>
+        Discover the latest updates and insights from our team and
+              industry experts.
+       </p>
+       <a aria-label="Read more about News Headline One" href="#">
+        Read More
+        <i class="fas fa-arrow-right">
+        </i>
+       </a>
+      </div>
+     </article>
+     <article class="news-article">
+      <img alt="A close-up of hands typing on a laptop keyboard with coffee cup nearby, representing news article 2" height="250" src="https://storage.googleapis.com/a1aa/image/7046fbb0-209e-4b53-78f6-ee510e9253ea.jpg" width="400"/>
+      <div class="news-content">
+       <h3>
+        News Headline Two
+       </h3>
+       <p>
+        Learn about new features and improvements coming soon to our
+              platform.
+       </p>
+       <a aria-label="Read more about News Headline Two" href="#">
+        Read More
+        <i class="fas fa-arrow-right">
+        </i>
+       </a>
+      </div>
+     </article>
+     <article class="news-article">
+      <img alt="A person giving a presentation in a modern office with charts on screen, representing news article 3" height="250" src="https://storage.googleapis.com/a1aa/image/477d9257-1e36-4691-3c55-9bc3b6fbcf7d.jpg" width="400"/>
+      <div class="news-content">
+       <h3>
+        News Headline Three
+       </h3>
+       <p>
+        Join our upcoming webinar to get the most out of our tools and
+              services.
+       </p>
+       <a aria-label="Read more about News Headline Three" href="#">
+        Read More
+        <i class="fas fa-arrow-right">
+        </i>
+       </a>
+      </div>
+     </article>
+     <article class="news-article">
+      <img alt="A team celebrating success in a bright office environment, representing news article 4" height="250" src="https://storage.googleapis.com/a1aa/image/50e34ca2-2124-4069-8ff6-952b5d8f8efc.jpg" width="400"/>
+      <div class="news-content">
+       <h3>
+        News Headline Four
+       </h3>
+       <p>
+        Celebrating milestones and achievements with our amazing
+              community.
+       </p>
+       <a aria-label="Read more about News Headline Four" href="#">
+        Read More
+        <i class="fas fa-arrow-right">
+        </i>
+       </a>
+      </div>
+     </article>
+     <article class="news-article">
+      <img alt="A futuristic workspace with multiple screens and tech gadgets, representing news article 5" height="250" src="https://storage.googleapis.com/a1aa/image/9d1792ed-8634-4004-b759-50d644679ae7.jpg" width="400"/>
+      <div class="news-content">
+       <h3>
+        News Headline Five
+       </h3>
+       <p>
+        Explore the future of technology and innovation with our expert
+              insights.
+       </p>
+       <a aria-label="Read more about News Headline Five" href="#">
+        Read More
+        <i class="fas fa-arrow-right">
+        </i>
+       </a>
+      </div>
+     </article>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <div class="footer-inner">
+    <p>
+     © 2025 MyApp. All rights reserved.
+    </p>
+    <div class="social-links" role="list">
+     <a aria-label="Facebook" href="#" role="listitem">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="Twitter" href="#" role="listitem">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a aria-label="Instagram" href="#" role="listitem">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="LinkedIn" href="#" role="listitem">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      if (mobileMenu.style.display === 'block') {
+        mobileMenu.style.display = 'none';
+      } else {
+        mobileMenu.style.display = 'block';
+      }
+    });
+
+    // Close mobile menu on window resize if desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+  </script>
+ </body>
+</html>
